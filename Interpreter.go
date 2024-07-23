@@ -67,10 +67,8 @@ func main() {
 
 		for _, pearl := range pearls[1] {
 			if symbolicPearl == pearl {
-				fmt.Println(symbolicPearl)
+				fmt.Println(pearlMap[symbolicPearl])
 			}
 		}
 	}
-	fmt.Println(pearlMap)
-
 }
