@@ -1,4 +1,4 @@
-// This is the core system for interpreting ShellFish code
+// This is the core system for interpreting 5hellFish code
 // The 2xdropout 2024
 
 package main
