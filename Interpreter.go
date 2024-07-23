@@ -31,6 +31,17 @@ type Shell struct {
 }
 
 func main() {
+	pearlMap := make(map[string]string)
+	pearlMap["#"] = "COMM"
+	pearlMap["~"] = "MAIN"
+	pearlMap["~~"] = "FUNC"
+	pearlMap["!"] = "DECL"
+	pearlMap["!!"] = "GLOBAL"
+	pearlMap["^"] = "CLASS"
+	pearlMap["<"] = "IMPORT"
+	pearlMap["|||"] = "BUFF"
+	pearlMap["$"] = "COST"
+
 	pearls := [][]string{{"COMM", "MAIN", "FUNC", "DECL", "GLOBAL", "CLASS", "IMPORT", "BUFF", "COST"}, {"#", "~", "~~", "!", "!!", "^", "<", "|||", "$"}}
 
 	targetFile, err := os.Open("./Test/testCode.5F") // This will be removed at a later date
@@ -60,5 +71,6 @@ func main() {
 			}
 		}
 	}
+	fmt.Println(pearlMap)
 
 }
