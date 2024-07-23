@@ -59,15 +59,28 @@ func main() {
 
 	for _, line := range fileLines { //In the future the index (currently "_" in this line) could be used for better error handling as it shares a relationship with the line number
 		line = strings.TrimLeft(line, " ")
-		symbolicPearlRegex, _ := regexp.Compile(`[{].+?([ ])`)
+		symbolicPearlRegex, _ := regexp.Compile(`[{].+?([ ])`) // This regex may seem to be overly inclusive, but it will allow us to easily modify our mappings later when the interpreter is compiled from source.
+		englishPearlRegex, _ := regexp.Compile(`[{](COMM|MAIN|FUNC|DECL|GLOBAL|CLASS|IMPORT|BUFF|COST)[ ]`)
 
 		symbolicPearl := symbolicPearlRegex.FindString(line)
 		symbolicPearl = strings.TrimLeft(symbolicPearl, "{")
 		symbolicPearl = strings.TrimRight(symbolicPearl, " ")
 
-		for _, pearl := range pearls[1] {
-			if symbolicPearl == pearl {
-				fmt.Println(pearlMap[symbolicPearl])
+		englishPearl := englishPearlRegex.FindString(line)
+		englishPearl = strings.TrimLeft(englishPearl, "{")
+		englishPearl = strings.TrimRight(englishPearl, " ")
+
+		if englishPearl != "" {
+			for _, pearl := range pearls[0] {
+				if englishPearl == pearl {
+					fmt.Println(englishPearl)
+				}
+			}
+		} else if symbolicPearl != "" {
+			for _, pearl := range pearls[1] {
+				if symbolicPearl == pearl {
+					fmt.Println(pearlMap[symbolicPearl])
+				}
 			}
 		}
 	}
