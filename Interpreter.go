@@ -11,21 +11,15 @@ import (
 	"strings"
 )
 
-type subShell struct {
-	pearl  string
-	pShell *Shell
-
-	nextSubShell *subShell
-}
-
 type Shell struct {
-	pearl string
-	meat  string
-	wait  bool `default:"false"`
+	pearl     string
+	funcName  string `default:" "`
+	className string `default:" "`
+	meat      string
+	wait      bool `default:"false"`
 
-	isSubShell   bool `default:"false"`
 	pParentShell *Shell
-	pSubShell    *subShell
+	pSubShell    *Shell
 
 	nextShell *Shell
 }
